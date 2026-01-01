@@ -1,0 +1,112 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4">Admin Dashboard</h1>
+            <p class="lead">Welcome to SmartPlant Admin Panel</p>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Manage Plants Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Plants</h5>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="ManagePlants" class="text-white text-decoration-none">
+                        Manage Plants
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Users Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="ManageUsers" class="text-white text-decoration-none">
+                        Manage Users
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Feedback Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-warning h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Feedback</h5>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="ViewFeedback" class="text-white text-decoration-none">
+                        View Feedback
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Info Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card text-white bg-info h-100">
+                <div class="card-body">
+                    <h5 class="card-title">System</h5>
+                </div>
+                <div class="card-footer">
+                    <span class="text-white">SmartPlant v1.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a asp-action="CreatePlant" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Add New Plant</h6>
+                                <small>+</small>
+                            </div>
+                            <p class="mb-1">Add a new plant to the catalog</p>
+                        </a>
+                        <a asp-action="ManagePlants" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">View All Plants</h6>
+                            </div>
+                            <p class="mb-1">Browse and manage plant catalog</p>
+                        </a>
+                        <a asp-action="ManageUsers" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">User Management</h6>
+                            </div>
+                            <p class="mb-1">View and manage registered users</p>
+                        </a>
+                        <a asp-action="ViewFeedback" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">User Feedback</h6>
+                            </div>
+                            <p class="mb-1">Review feedback from users</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>

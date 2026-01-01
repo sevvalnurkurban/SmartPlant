@@ -1,0 +1,192 @@
+@model SmartPlant.Models.ViewModels.ProfileViewModel
+
+@{
+    ViewData["Title"] = "My Profile";
+    Layout = User.IsInRole("Admin") ? "~/Views/Shared/_AdminLayout.cshtml" : "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <!-- Back to Dashboard Link -->
+    <div class="mb-3">
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-controller="Admin" asp-action="Dashboard" class="text-decoration-none text-dark">
+                <span style="font-size: 1.2rem;">&larr; Back to Dashboard</span>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="UserPlants" asp-action="Index" class="text-decoration-none text-dark">
+                <span style="font-size: 1.2rem;">&larr; Back to Dashboard</span>
+            </a>
+        }
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-2">My Profile</h2>
+    <p class="text-center mb-4">View and edit your personal information.</p>
+
+    <!-- Profile Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                <form asp-action="Profile" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+                    <!-- Profile Photo Section -->
+                    <div class="text-center mb-4">
+                        <div style="width: 120px; height: 120px; margin: 0 auto; position: relative;">
+                            @if (!string.IsNullOrEmpty(Model.PhotoUrl))
+                            {
+                                <img id="photoPreview" src="@Model.PhotoUrl" alt="Profile Photo" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #333; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <div id="photoPlaceholder" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #333; background-color: white; display: flex; align-items: center; justify-content: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#666" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </div>
+                            }
+                        </div>
+                        <div class="mt-3">
+                            <label for="photoFile" class="btn me-2" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 5px 20px; cursor: pointer;">Change Photo</label>
+                            <input type="file" id="photoFile" name="photoFile" accept="image/*" class="d-none" />
+                            <button type="button" id="removePhotoBtn" class="btn" style="background-color: #999; color: white; border-radius: 5px; padding: 5px 20px; @(string.IsNullOrEmpty(Model.PhotoUrl) ? "display: none;" : "")">Remove Photo</button>
+                        </div>
+                    </div>
+
+                    <!-- Full Name -->
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label" style="font-weight: bold;">Full Name:</label>
+                        <input asp-for="FullName" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label" style="font-weight: bold;">Email:</label>
+                        <input asp-for="Email" type="email" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="mb-4">
+                        <label asp-for="Username" class="form-label" style="font-weight: bold;">Username:</label>
+                        <input asp-for="Username" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="Username" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Hidden fields -->
+                    <input type="hidden" asp-for="PhotoUrl" id="photoUrlField" />
+                    <input type="hidden" name="removePhoto" id="removePhotoFlag" value="false" />
+
+                    <!-- Update Button -->
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 8px 40px;">Update Profile</button>
+                    </div>
+                </form>
+
+                <!-- Preferences and Change Password Buttons -->
+                <div class="text-center">
+                    <a asp-action="Preferences" class="btn me-2" style="background-color: #6a8c69; color: white; border-radius: 5px; padding: 8px 30px;">Preferences</a>
+                    <a asp-action="ChangePassword" class="btn" style="background-color: #7a8c7a; color: white; border-radius: 5px; padding: 8px 30px;">Change Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Photo file input change handler
+            const photoFileInput = document.getElementById('photoFile');
+            if (photoFileInput) {
+                photoFileInput.addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const preview = document.getElementById('photoPreview');
+                            const placeholder = document.getElementById('photoPlaceholder');
+                            const removeBtn = document.getElementById('removePhotoBtn');
+                            const removeFlag = document.getElementById('removePhotoFlag');
+
+                            // Reset remove flag
+                            if (removeFlag) removeFlag.value = 'false';
+
+                            if (preview) {
+                                preview.src = e.target.result;
+                            } else {
+                                // Create new img if placeholder exists
+                                if (placeholder) {
+                                    const newImg = document.createElement('img');
+                                    newImg.id = 'photoPreview';
+                                    newImg.src = e.target.result;
+                                    newImg.style.cssText = 'width: 120px; height: 120px; border-radius: 50%; border: 3px solid #333; object-fit: cover;';
+                                    placeholder.replaceWith(newImg);
+                                }
+                            }
+
+                            // Show remove button
+                            if (removeBtn) {
+                                removeBtn.style.display = 'inline-block';
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Remove photo button click handler
+            const removePhotoBtn = document.getElementById('removePhotoBtn');
+            if (removePhotoBtn) {
+                removePhotoBtn.addEventListener('click', function() {
+                    const preview = document.getElementById('photoPreview');
+                    const removeBtn = document.getElementById('removePhotoBtn');
+                    const removeFlag = document.getElementById('removePhotoFlag');
+                    const photoInput = document.getElementById('photoFile');
+                    const photoUrlField = document.getElementById('photoUrlField');
+
+                    // Set remove flag to true
+                    if (removeFlag) removeFlag.value = 'true';
+
+                    // Clear photo input
+                    if (photoInput) photoInput.value = '';
+
+                    // Clear PhotoUrl
+                    if (photoUrlField) photoUrlField.value = '';
+
+                    // Replace image with placeholder
+                    if (preview) {
+                        const placeholder = document.createElement('div');
+                        placeholder.id = 'photoPlaceholder';
+                        placeholder.style.cssText = 'width: 120px; height: 120px; border-radius: 50%; border: 3px solid #333; background-color: white; display: flex; align-items: center; justify-content: center;';
+                        placeholder.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#666" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>';
+                        preview.replaceWith(placeholder);
+                    }
+
+                    // Hide remove button
+                    if (removeBtn) {
+                        removeBtn.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,107 @@
+@{
+    ViewData["Title"] = "Help";
+    Layout = User.IsInRole("Admin") ? "~/Views/Shared/_AdminLayout.cshtml" : "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <!-- Back to Home Link -->
+            <div class="mb-3">
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Admin" asp-action="Dashboard" class="text-decoration-none text-dark">
+                        ← Back to Dashboard
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Home" asp-action="Index" class="text-decoration-none text-dark">
+                        ← Back to Home
+                    </a>
+                }
+            </div>
+
+            <!-- Logo and Title -->
+            <div class="text-center mb-4">
+                <h1 class="mb-3">🌱 SmartPlant</h1>
+                <h2>Help & FAQ</h2>
+                <p class="mt-3">Find answers to common questions about using SmartPlant.</p>
+            </div>
+
+            <!-- Help Content Box -->
+            <div class="p-5" style="background-color: #d4e4d4; border: 1px solid #999;">
+                <h4 class="mb-4">Frequently Asked Questions</h4>
+
+                <!-- Getting Started -->
+                <div class="mb-4">
+                    <h5 style="color: #5a7a4d;">🌱 Getting Started</h5>
+                    <div class="ms-3">
+                        <p class="mb-2"><strong>Q: How do I add a plant to my collection?</strong></p>
+                        <p class="mb-3">A: After logging in, go to "My Plants" and click "Add New Plant". Search for your plant species in our database and add it to your collection.</p>
+
+                        <p class="mb-2"><strong>Q: Can I add custom plants that aren't in your database?</strong></p>
+                        <p class="mb-3">A: Currently, you can only add plants from our curated database. If you'd like to see a specific plant added, please contact us via the feedback form.</p>
+                    </div>
+                </div>
+
+                <!-- Plant Care -->
+                <div class="mb-4">
+                    <h5 style="color: #5a7a4d;">💧 Plant Care</h5>
+                    <div class="ms-3">
+                        <p class="mb-2"><strong>Q: How do watering reminders work?</strong></p>
+                        <p class="mb-3">A: SmartPlant automatically sets up watering reminders based on each plant's specific needs. You'll receive notifications when it's time to water your plants.</p>
+
+                        <p class="mb-2"><strong>Q: What do the light requirement labels mean?</strong></p>
+                        <p class="mb-3">A:
+                            <strong>Full Sun:</strong> 6+ hours of direct sunlight<br />
+                            <strong>Bright Indirect Light:</strong> Bright room, no direct sun<br />
+                            <strong>Medium Light:</strong> Some natural light, away from windows<br />
+                            <strong>Low Light:</strong> Can tolerate darker spaces
+                        </p>
+
+                        <p class="mb-2"><strong>Q: How accurate are the temperature ranges?</strong></p>
+                        <p class="mb-3">A: Temperature ranges are based on optimal growing conditions for each plant species. Most houseplants are adaptable and can tolerate slight variations.</p>
+                    </div>
+                </div>
+
+                <!-- Account Management -->
+                <div class="mb-4">
+                    <h5 style="color: #5a7a4d;">👤 Account Management</h5>
+                    <div class="ms-3">
+                        <p class="mb-2"><strong>Q: How do I update my profile information?</strong></p>
+                        <p class="mb-3">A: Click on "Profile" in the navigation menu to update your name, email, or password.</p>
+
+                        <p class="mb-2"><strong>Q: Can I delete my account?</strong></p>
+                        <p class="mb-3">A: Yes, you can request account deletion by contacting us at smartplant.support@example.com.</p>
+                    </div>
+                </div>
+
+                <!-- Technical Support -->
+                <div class="mb-4">
+                    <h5 style="color: #5a7a4d;">⚙️ Technical Support</h5>
+                    <div class="ms-3">
+                        <p class="mb-2"><strong>Q: The app isn't working properly. What should I do?</strong></p>
+                        <p class="mb-3">A: Try refreshing your browser or clearing your cache. If the problem persists, contact us with details about the issue.</p>
+
+                        <p class="mb-2"><strong>Q: Is SmartPlant available on mobile devices?</strong></p>
+                        <p class="mb-3">A: SmartPlant is web-based and works on any device with a modern browser. Simply access it through your mobile browser.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="mt-5 pt-3 border-top">
+                    <h5 style="color: #5a7a4d;">📧 Still Need Help?</h5>
+                    <p class="mb-2">If you can't find the answer you're looking for, please contact us:</p>
+                    <p class="mb-0">
+                        <strong>Email:</strong> <a href="mailto:smartplant.support@example.com" style="color: #5a7a4d;">smartplant.support@example.com</a><br />
+                        <strong>Response Time:</strong> We aim to respond within 24-48 hours.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>

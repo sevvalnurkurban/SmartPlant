@@ -1,0 +1,105 @@
+@model SmartPlant.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-4">
+    <!-- Back to Home Link -->
+    <div class="mb-3">
+        <a asp-controller="Home" asp-action="Index" class="text-decoration-none text-dark">
+            <span style="font-size: 1.2rem;">&larr; Back to Home</span>
+        </a>
+    </div>
+
+    <!-- Register Form Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <!-- Logo and Title -->
+            <div class="text-center mb-4">
+                <h1 class="mb-3">🌱 SmartPlant</h1>
+                <h2>Create Your SmartPlant Account</h2>
+            </div>
+
+            <!-- Register Form Box -->
+            <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+                <form asp-action="Register" method="post">
+                    @if (!string.IsNullOrEmpty(ViewData.ModelState.Values.FirstOrDefault()?.Errors.FirstOrDefault()?.ErrorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                    }
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    <!-- First Name -->
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label" style="font-weight: bold;">First Name:</label>
+                        <input asp-for="Name" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="mb-3">
+                        <label asp-for="Surname" class="form-label" style="font-weight: bold;">Last Name:</label>
+                        <input asp-for="Surname" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="Surname" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label" style="font-weight: bold;">Email:</label>
+                        <input asp-for="Email" type="email" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Note: NO Username field - it will be auto-generated -->
+                    <div class="mb-3">
+                        <small class="text-muted">Note: Your username will be automatically generated from your name.</small>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label" style="font-weight: bold;">Password:</label>
+                        <input asp-for="Password" type="password" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mb-4">
+                        <label asp-for="ConfirmPassword" class="form-label" style="font-weight: bold;">Confirm Password:</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Register Button -->
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 8px 40px;">Register</button>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="text-center">
+                        <p class="mb-0">
+                            <span>Already have an account? </span>
+                            <a asp-action="Login" class="text-dark" style="text-decoration: underline;">Login here.</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

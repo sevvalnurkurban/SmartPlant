@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Send Feedback";
+}
+
+<div class="container mt-4">
+    <!-- Back to My Plants Link -->
+    <div class="mb-3">
+        <a asp-controller="UserPlants" asp-action="Index" class="text-decoration-none text-dark">
+            <span style="font-size: 1.2rem;">&larr; Back to My Plants</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-2">Send Feedback</h2>
+    <p class="text-center mb-4">We'd love to hear your thoughts about SmartPlant!</p>
+
+    <!-- Feedback Form Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+
+                @if (ViewData.ModelState.Count > 0 && !ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @Html.ValidationSummary(false)
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <!-- Feedback Textarea -->
+                    <div class="mb-4">
+                        <label for="feedback" class="form-label" style="font-weight: bold;">Your Feedback:</label>
+                        <textarea
+                            id="feedback"
+                            name="feedback"
+                            class="form-control"
+                            rows="6"
+                            placeholder="Tell us what you think..."
+                            style="background-color: white;"
+                            required></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 8px 40px;">
+                            Submit Feedback
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

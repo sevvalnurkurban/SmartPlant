@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "Select a Plant to Add";
+    var plants = ViewBag.Plants as IEnumerable<SmartPlant.Models.Entities.Plant>;
+}
+
+<div class="container mt-4">
+    <!-- Back to Dashboard Link -->
+    <div class="mb-3">
+        <a asp-action="Index" class="text-decoration-none text-dark">
+            <span style="font-size: 1.2rem;">&larr; Back to Dashboard</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-2">Select a Plant to Add</h2>
+    <p class="text-center mb-4">Choose a plant species from the database to add it to your collection.</p>
+
+    <!-- Plants Table -->
+    <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+        <!-- Search Box -->
+        <div class="mb-3">
+            <input type="text" id="searchBox" class="form-control" placeholder="Search by plant name..." style="background-color: white; border: 1px solid #999; max-width: 400px;" />
+        </div>
+
+        @if (plants != null && plants.Any())
+        {
+            <div class="table-responsive" style="max-height: 600px; overflow-x: auto; overflow-y: auto;">
+                <table class="table table-bordered bg-white" id="plantsTable" style="min-width: 800px;">
+                    <thead style="background-color: #c9b8a0; position: sticky; top: 0; z-index: 10;">
+                        <tr>
+                            <th style="min-width: 180px;">Plant Name</th>
+                            <th style="min-width: 120px;">Category</th>
+                            <th style="min-width: 180px;">Light</th>
+                            <th style="min-width: 150px;">Watering Period</th>
+                            <th style="min-width: 130px;">Water (ml/week)</th>
+                            <th style="min-width: 100px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var plant in plants)
+                        {
+                            <tr style="background-color: #c8e6c9;">
+                                <td>@plant.Name</td>
+                                <td>@(plant.Type ?? "-")</td>
+                                <td>@(plant.Light ?? "-")</td>
+                                <td>@(plant.WaterPeriod ?? "-")</td>
+                                <td>@(plant.WaterMlPerWeek?.ToString() ?? "-") ml</td>
+                                <td>
+                                    <form asp-action="AddPlantToCollection" asp-route-plantId="@plant.Id" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 5px 20px;">Add</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <p class="mb-3">No plants available in the database.</p>
+            </div>
+        }
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBox = document.getElementById('searchBox');
+            const plantsTable = document.getElementById('plantsTable');
+
+            if (searchBox && plantsTable) {
+                searchBox.addEventListener('keyup', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const tableRows = plantsTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                    for (let i = 0; i < tableRows.length; i++) {
+                        const plantNameCell = tableRows[i].getElementsByTagName('td')[0];
+                        if (plantNameCell) {
+                            const plantName = plantNameCell.textContent || plantNameCell.innerText;
+                            if (plantName.toLowerCase().indexOf(searchTerm) > -1) {
+                                tableRows[i].style.display = '';
+                            } else {
+                                tableRows[i].style.display = 'none';
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+}

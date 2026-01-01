@@ -1,0 +1,94 @@
+@model SmartPlant.Models.Entities.User
+
+@{
+    ViewData["Title"] = "View User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <!-- Back to Manage Users Link -->
+    <div class="mb-3">
+        <a asp-action="ManageUsers" class="text-decoration-none text-dark">
+            <span style="font-size: 1.1rem;">&larr; Back to Manage Users</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-4">User Details</h2>
+
+    <!-- User Details Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+
+                <!-- User Photo -->
+                <div class="text-center mb-4">
+                    @if (!string.IsNullOrEmpty(Model.PhotoUrl))
+                    {
+                        <img src="@Model.PhotoUrl" alt="User Photo" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #333; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <div style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #333; background-color: white; display: inline-flex; align-items: center; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#666" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            </svg>
+                        </div>
+                    }
+                </div>
+
+                <!-- User Information -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Full Name:</label>
+                    <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                        @Model.Name @Model.Surname
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Username:</label>
+                    <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                        @Model.Username
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Email:</label>
+                    <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                        @Model.Email
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Bio:</label>
+                    <div class="p-2" style="background-color: white; border: 1px solid #999; min-height: 60px;">
+                        @(string.IsNullOrEmpty(Model.Bio) ? "No bio available" : Model.Bio)
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Registered Plants:</label>
+                    <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                        @(Model.UserPlants?.Count(up => !up.IsDeleted) ?? 0)
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Member Since:</label>
+                    <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                        @Model.CreatedDate.ToString("MMMM dd, yyyy")
+                    </div>
+                </div>
+
+                <!-- Back Button -->
+                <div class="text-center mt-4">
+                    <a asp-action="ManageUsers" class="btn" style="background-color: #8b9f7f; color: white; padding: 8px 40px;">Back to Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>

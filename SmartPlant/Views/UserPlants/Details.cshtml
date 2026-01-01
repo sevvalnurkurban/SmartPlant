@@ -1,0 +1,130 @@
+@model SmartPlant.Models.ViewModels.UserPlantViewModel
+
+@{
+    ViewData["Title"] = "View Plant Details";
+}
+
+<div class="container mt-4">
+    <!-- Back to Dashboard Link -->
+    <div class="mb-3">
+        <a asp-action="Index" class="text-decoration-none text-dark">
+            <span style="font-size: 1.2rem;">&larr; Back to My Plants</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-2">View Plant Details</h2>
+    <p class="text-center mb-4">Detailed information about your plant.</p>
+
+    <!-- View Details -->
+    <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+        <div class="row">
+            <!-- Left side - Image display -->
+            <div class="col-md-3 text-center mb-3">
+                <div style="width: 150px; height: 150px; border: 2px solid #333; background-color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto; position: relative; overflow: hidden;">
+                    @if (!string.IsNullOrEmpty(Model.PlantPhotoUrl))
+                    {
+                        <img src="@Model.PlantPhotoUrl" alt="Plant" style="width: 100%; height: 100%; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <div style="font-size: 3rem; color: #ccc;">
+                            <span style="font-size: 60px;">🌿</span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Right side - Plant Name -->
+            <div class="col-md-6 mb-3">
+                <label class="form-label" style="font-weight: bold;">Plant Name:</label>
+                <input type="text" value="@Model.PlantName" class="form-control" readonly style="background-color: #f5f5f5; max-width: 400px; border: 1px solid #999;" />
+            </div>
+        </div>
+
+        <!-- Information Row -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label class="form-label" style="font-weight: bold;">Species:</label>
+                <input type="text" value="@(ViewBag.PlantType ?? "N/A")" class="form-control" readonly style="background-color: #f5f5f5; border: 1px solid #999;" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" style="font-weight: bold;">Watering Period:</label>
+                <input type="text" value="@(ViewBag.WaterPeriod ?? "N/A")" class="form-control" readonly style="background-color: #f5f5f5; border: 1px solid #999;" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" style="font-weight: bold;">Water (ml/week):</label>
+                <input type="text" value="@(ViewBag.WaterMlPerWeek != null ? ViewBag.WaterMlPerWeek.ToString() + " ml" : "N/A")" class="form-control" readonly style="background-color: #f5f5f5; border: 1px solid #999;" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" style="font-weight: bold;">Light Requirement:</label>
+                <input type="text" value="@(ViewBag.Light ?? "N/A")" class="form-control" readonly style="background-color: #f5f5f5; border: 1px solid #999;" />
+            </div>
+        </div>
+
+        <!-- Temperature Range -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label class="form-label" style="font-weight: bold;">Temperature Range:</label>
+                <input type="text" value="@(ViewBag.Temperature ?? "N/A")" class="form-control" readonly style="background-color: #f5f5f5; max-width: 300px; border: 1px solid #999;" />
+            </div>
+        </div>
+
+        <!-- Care Instructions / Notes -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <label class="form-label" style="font-weight: bold;">Care Instructions:</label>
+                <textarea class="form-control" rows="4" readonly style="background-color: #f5f5f5; border: 1px solid #999;">@(ViewBag.Description ?? "No care instructions available.")</textarea>
+            </div>
+        </div>
+
+        <!-- Last Watered & Next Watering Info -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label" style="font-weight: bold;">Last Watered:</label>
+                <input type="text" value="@(Model.LastWatered.HasValue ? Model.LastWatered.Value.ToString("MMMM dd, yyyy") : "Never")" class="form-control" readonly style="background-color: #f5f5f5; border: 1px solid #999;" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" style="font-weight: bold;">Next Watering:</label>
+                <input type="text" value="@(Model.NextWatering.HasValue ? Model.NextWatering.Value.ToString("MMMM dd, yyyy") : "Not scheduled")" class="form-control" readonly style="background-color: #f5f5f5; border: 1px solid #999;" />
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <label class="form-label" style="font-weight: bold;">Status:</label>
+                <div class="p-2" style="background-color: #f5f5f5; border: 1px solid #999; border-radius: 5px; max-width: 300px;">
+                    @if (Model.NextWatering.HasValue)
+                    {
+                        var daysUntilWater = (Model.NextWatering.Value.Date - DateTime.Now.Date).Days;
+                        if (daysUntilWater <= 0)
+                        {
+                            <span style="color: #d32f2f; font-weight: bold;">⚠ Time to water!</span>
+                        }
+                        else if (daysUntilWater <= 2)
+                        {
+                            <span style="color: #ff9800; font-weight: bold;">☼ Water soon</span>
+                        }
+                        else
+                        {
+                            <span style="color: #4caf50; font-weight: bold;">✓ Healthy</span>
+                        }
+                    }
+                    else
+                    {
+                        <span style="color: #4caf50; font-weight: bold;">✓ Healthy</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center">
+            <a asp-action="Index" class="btn" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 8px 30px;">Back to My Plants</a>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>

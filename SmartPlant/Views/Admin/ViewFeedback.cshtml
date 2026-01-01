@@ -1,0 +1,68 @@
+@model IEnumerable<SmartPlant.Models.Entities.UserFeedback>
+
+@{
+    ViewData["Title"] = "View Feedback";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <!-- Back to Manage Plants Link -->
+    <div class="mb-3">
+        <a asp-action="ManagePlants" class="text-decoration-none text-dark">
+            <span style="font-size: 1.1rem;">&larr; Back to Manage Plants</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-4">View Feedback</h2>
+
+    <!-- Feedback Table Container -->
+    <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-bordered" style="background-color: white;">
+                <thead>
+                    <tr style="background-color: #f0f0f0;">
+                        <th>User</th>
+                        <th>Feedback</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        bool isEvenRow = false;
+                    }
+                    @foreach (var feedback in Model)
+                    {
+                        var rowColor = isEvenRow ? "#c8e6c9" : "white";
+                        isEvenRow = !isEvenRow;
+
+                        <tr style="background-color: @rowColor;">
+                            <td>@feedback.User?.Name @feedback.User?.Surname</td>
+                            <td>@feedback.Feedback</td>
+                            <td>@feedback.CreatedAt.ToString("MMM d")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <p class="mb-3">No feedback found.</p>
+            </div>
+        }
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>

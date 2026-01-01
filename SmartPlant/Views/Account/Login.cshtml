@@ -1,0 +1,91 @@
+@model SmartPlant.Models.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-4">
+    <!-- Back to Home Link -->
+    <div class="mb-3">
+        <a asp-controller="Home" asp-action="Index" class="text-decoration-none text-dark">
+            <span style="font-size: 1.2rem;">&larr; Back to Home</span>
+        </a>
+    </div>
+
+    <!-- Login Form Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <!-- Back to Home Link (removed duplicate) -->
+
+            <!-- Logo and Title -->
+            <div class="text-center mb-4">
+                <h1 class="mb-3">🌱 SmartPlant</h1>
+                <h2>Login</h2>
+            </div>
+
+            <!-- Login Form Box -->
+            <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+                <form asp-action="Login" method="post">
+                    @if (!string.IsNullOrEmpty(ViewData.ModelState.Values.FirstOrDefault()?.Errors.FirstOrDefault()?.ErrorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                    }
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    <!-- Email or Username -->
+                    <div class="mb-3">
+                        <label asp-for="EmailOrUsername" class="form-label" style="font-weight: bold;">Email or Username:</label>
+                        <input asp-for="EmailOrUsername" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="EmailOrUsername" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label" style="font-weight: bold;">Password:</label>
+                        <input asp-for="Password" type="password" class="form-control" style="background-color: white;" />
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 8px 40px;">Login</button>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="mb-3 text-center">
+                        <div class="form-check d-inline-block">
+                            <input asp-for="RememberMe" class="form-check-input" type="checkbox" />
+                            <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="text-center">
+                        <p class="mb-2">
+                            <span>Don't have an account? </span>
+                            <a asp-action="Register" class="text-dark" style="text-decoration: underline;">Register here.</a>
+                        </p>
+                        <p class="mb-0">
+                            <a asp-action="ForgotPassword" class="text-dark" style="text-decoration: underline;">Forgot password?</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

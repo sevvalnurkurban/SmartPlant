@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <!-- Logo and Title -->
+    <div class="my-5">
+        <h1 class="display-4 mb-4">🌱 SmartPlant</h1>
+
+        <!-- Plant Icon Placeholder -->
+        <div class="my-4">
+            <div class="d-inline-block border rounded p-4" style="width: 150px; height: 150px;">
+                <span style="font-size: 80px;">🪴</span>
+            </div>
+        </div>
+
+        <!-- Main Description -->
+        <h4 class="mt-4 mb-3">Monitor and care for your plants intelligently.</h4>
+        <p class="lead mb-4">Track watering, light, and temperature for every plant species.</p>
+
+        <!-- Get Started Button -->
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <a asp-controller="UserPlants" asp-action="Index" class="btn btn-lg px-5" style="background-color: #8b9f7f; color: white; border-radius: 5px;">Get Started</a>
+        }
+        else
+        {
+            <a asp-controller="Account" asp-action="Register" class="btn btn-lg px-5" style="background-color: #8b9f7f; color: white; border-radius: 5px;">Get Started</a>
+        }
+    </div>
+
+    <!-- Features Box -->
+    <div class="my-5">
+        <div class="border mx-auto" style="max-width: 400px;">
+            <div class="border-bottom p-3">
+                <span style="font-size: 20px;">💧</span> Water reminders
+            </div>
+            <div class="border-bottom p-3">
+                <span style="font-size: 20px;">☀️</span> Light condition tips
+            </div>
+            <div class="p-3">
+                <span style="font-size: 20px;">🌡️</span> Temperature tracking
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-5 pt-3">
+        <p>&copy; 2025 SmartPlant – All Rights Reserved</p>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>

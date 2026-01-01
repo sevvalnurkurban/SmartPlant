@@ -1,0 +1,136 @@
+@{
+    ViewData["Title"] = "Add New Plant";
+}
+
+<div class="container mt-4">
+    <!-- Back to Dashboard Link -->
+    <div class="mb-3">
+        <a asp-action="Index" class="text-decoration-none text-dark">
+            <span style="font-size: 1.2rem;">&larr; Back to Dashboard</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-2">Add New Plant</h2>
+    <p class="text-center mb-4">Enter your plant details to start tracking its care routine.</p>
+
+    <!-- Plant Form -->
+    <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <!-- Left side - Image upload -->
+                <div class="col-md-3 text-center mb-3">
+                    <div style="width: 150px; height: 150px; border: 2px solid #333; background-color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto; position: relative; overflow: hidden;">
+                        <img id="imagePreview" src="#" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;" />
+                        <div id="imagePlaceholder" style="font-size: 3rem; color: #ccc;">
+                            <span style="font-size: 60px;">✕</span>
+                        </div>
+                    </div>
+                    <input type="file" id="photoFile" name="photoFile" accept="image/*" class="form-control mt-2" onchange="previewImage(event)" style="font-size: 0.85rem;" />
+                    <small class="text-muted">Upload plant photo</small>
+                </div>
+
+                <!-- Right side - Plant Name input -->
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label" style="font-weight: bold;">Plant Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required style="background-color: white; max-width: 400px;" />
+                </div>
+            </div>
+
+            <!-- Dropdowns Row -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="type" class="form-label" style="font-weight: bold;">Species</label>
+                    <select id="type" name="type" class="form-select" style="background-color: white;">
+                        <option value="">Select Species</option>
+                        <option value="Succulent">Succulent</option>
+                        <option value="Flower">Flower</option>
+                        <option value="Herb">Herb</option>
+                        <option value="Vegetable">Vegetable</option>
+                        <option value="Tree">Tree</option>
+                        <option value="Shrub">Shrub</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="waterPeriod" class="form-label" style="font-weight: bold;">Watering Frequency</label>
+                    <select id="waterPeriod" name="waterPeriod" class="form-select" style="background-color: white;">
+                        <option value="">Select Frequency</option>
+                        <option value="Daily">Daily</option>
+                        <option value="Every 2 days">Every 2 days</option>
+                        <option value="Every 3 days">Every 3 days</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Bi-weekly">Bi-weekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="light" class="form-label" style="font-weight: bold;">Light Requirement</label>
+                    <select id="light" name="light" class="form-select" style="background-color: white;">
+                        <option value="">Select Light</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Full Sun">Full Sun</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Temperature Range -->
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label class="form-label" style="font-weight: bold;">Temperature Range:</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="number" id="tempMin" name="tempMin" class="form-control" placeholder="Min" style="background-color: white; max-width: 100px;" min="-50" max="60" />
+                        <span style="font-weight: bold;">-</span>
+                        <input type="number" id="tempMax" name="tempMax" class="form-control" placeholder="Max" style="background-color: white; max-width: 100px;" min="-50" max="60" />
+                        <span style="font-weight: bold;">°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notes -->
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <label for="description" class="form-label" style="font-weight: bold;">Notes:</label>
+                    <textarea id="description" name="description" class="form-control" rows="3" style="background-color: white;"></textarea>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="text-center">
+                <button type="submit" class="btn me-2" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 8px 30px;">Save Plant</button>
+                <a asp-action="SelectPlant" class="btn" style="background-color: #999; color: white; border-radius: 5px; padding: 8px 30px;">Cancel</a>
+            </div>
+
+            @if (ViewData.ModelState.Count > 0 && !ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger mt-3">
+                    @Html.ValidationSummary(false)
+                </div>
+            }
+        </form>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('imagePreview');
+                const placeholder = document.getElementById('imagePlaceholder');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                placeholder.style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+</script>

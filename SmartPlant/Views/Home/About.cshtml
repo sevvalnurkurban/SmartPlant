@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "About";
+    Layout = User.IsInRole("Admin") ? "~/Views/Shared/_AdminLayout.cshtml" : "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <!-- Back to Home Link -->
+            <div class="mb-3">
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Admin" asp-action="Dashboard" class="text-decoration-none text-dark">
+                        ← Back to Dashboard
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Home" asp-action="Index" class="text-decoration-none text-dark">
+                        ← Back to Home
+                    </a>
+                }
+            </div>
+
+            <!-- Logo and Title -->
+            <div class="text-center mb-4">
+                <h1 class="mb-3">🌱 SmartPlant</h1>
+                <h2>About SmartPlant</h2>
+                <p class="mt-3">Learn more about our mission and how SmartPlant helps you care for your plants.</p>
+            </div>
+
+            <!-- About Content Box -->
+            <div class="p-5" style="background-color: #d4e4d4; border: 1px solid #999;">
+                <p class="mb-4">
+                    <strong>🌱 SmartPlant</strong> is a web-based intelligent assistant designed to help plant lovers monitor and
+                    manage their plants easily. It provides personalized care reminders for watering, sunlight,
+                    and temperature adjustments — ensuring your plants stay healthy and happy.
+                </p>
+
+                <p class="mb-0">
+                    Our mission is to make plant care simple, interactive, and accessible for everyone.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>

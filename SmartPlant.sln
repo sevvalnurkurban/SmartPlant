@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartPlant", "SmartPlant\SmartPlant.csproj", "{9607ABFB-B1C3-45C3-A97F-433252799833}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9607ABFB-B1C3-45C3-A97F-433252799833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9607ABFB-B1C3-45C3-A97F-433252799833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9607ABFB-B1C3-45C3-A97F-433252799833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9607ABFB-B1C3-45C3-A97F-433252799833}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04F6F27B-0039-486E-8EB6-CC49ED4D191B}
+	EndGlobalSection
+EndGlobal

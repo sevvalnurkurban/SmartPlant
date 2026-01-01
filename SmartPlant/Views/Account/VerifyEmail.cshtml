@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Email Verification";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center mb-4">
+                <h1 class="mb-3" style="color: #8b9f7f;">🌱 SmartPlant</h1>
+            </div>
+
+            <div class="card" style="border: 1px solid #8b9f7f;">
+                <div class="card-body p-5 text-center">
+                    @if (ViewBag.Success == true)
+                    {
+                        <div style="font-size: 60px; color: #4caf50; margin-bottom: 20px;">
+                            ✓
+                        </div>
+                        <h3 class="mb-4" style="color: #4caf50;">Email Verified Successfully!</h3>
+                        <p class="mb-4">@ViewBag.Message</p>
+
+                        <div class="mt-4">
+                            <a asp-controller="Account" asp-action="Login" class="btn" style="background-color: #8b9f7f; color: white; padding: 10px 30px;">
+                                Login Now
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="font-size: 60px; color: #d32f2f; margin-bottom: 20px;">
+                            ✗
+                        </div>
+                        <h3 class="mb-4" style="color: #d32f2f;">Verification Failed</h3>
+                        <p class="mb-4">@ViewBag.Message</p>
+
+                        <div class="alert alert-warning" style="background-color: #fff4e5; border-color: #ff9800;">
+                            <strong>⚠️ Possible reasons:</strong>
+                            <ul class="text-start mt-2 mb-0">
+                                <li>The verification link has expired (24 hours)</li>
+                                <li>The link has already been used</li>
+                                <li>Invalid verification token</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary me-2">
+                                Register Again
+                            </a>
+                            <a asp-controller="Home" asp-action="Index" class="btn" style="background-color: #8b9f7f; color: white;">
+                                Go to Home
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

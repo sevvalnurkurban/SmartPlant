@@ -1,0 +1,365 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\SmartPlant.bundle.scp.css",
+      "PackagePath": "staticwebassets\\SmartPlant.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\css\\admin.css",
+      "PackagePath": "staticwebassets\\css\\admin.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\js\\plants.js",
+      "PackagePath": "staticwebassets\\js\\plants.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\js\\reminders.js",
+      "PackagePath": "staticwebassets\\js\\reminders.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\07c43ec4-1f9c-4c27-b9a3-e2f44ba92ca6.jpg",
+      "PackagePath": "staticwebassets\\uploads\\07c43ec4-1f9c-4c27-b9a3-e2f44ba92ca6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\154465a0-3068-4136-b399-51158c0d6125.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\154465a0-3068-4136-b399-51158c0d6125.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\3f034643-50e2-483a-be60-c41af4b76cd3.png",
+      "PackagePath": "staticwebassets\\uploads\\3f034643-50e2-483a-be60-c41af4b76cd3.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\6675f342-8d9c-4817-8a63-ed72cb6ff769.jpg",
+      "PackagePath": "staticwebassets\\uploads\\6675f342-8d9c-4817-8a63-ed72cb6ff769.jpg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\plants\\14e084ab-6159-44c6-9a2b-2ec2df558a82.jpg",
+      "PackagePath": "staticwebassets\\uploads\\plants\\14e084ab-6159-44c6-9a2b-2ec2df558a82.jpg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\plants\\6ecc2cc9-dbed-44cd-8ba8-310294cdb9d8.png",
+      "PackagePath": "staticwebassets\\uploads\\plants\\6ecc2cc9-dbed-44cd-8ba8-310294cdb9d8.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\plants\\b299c671-fd37-4be7-889c-6f15889c1191.png",
+      "PackagePath": "staticwebassets\\uploads\\plants\\b299c671-fd37-4be7-889c-6f15889c1191.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\plants\\b6c5ac8b-db37-45a0-a75b-375f7b8d62a6.jpg",
+      "PackagePath": "staticwebassets\\uploads\\plants\\b6c5ac8b-db37-45a0-a75b-375f7b8d62a6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\plants\\d11fb8c7-d765-444c-870b-a0eab31eaea3.png",
+      "PackagePath": "staticwebassets\\uploads\\plants\\d11fb8c7-d765-444c-870b-a0eab31eaea3.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\2d3c44c0-d92b-41e9-9c5d-ee50e9264a17.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\2d3c44c0-d92b-41e9-9c5d-ee50e9264a17.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\421454d1-93dd-4caa-b9c6-93ca1ec7828d.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\421454d1-93dd-4caa-b9c6-93ca1ec7828d.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\59da6d94-ee05-44aa-9c9c-3d4217c22e65.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\59da6d94-ee05-44aa-9c9c-3d4217c22e65.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\63ce68d4-a2a1-4b45-9453-61d2dab0ec6f.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\63ce68d4-a2a1-4b45-9453-61d2dab0ec6f.jpg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\7e952c1e-8230-4e98-8aa8-ac4002f2181e.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\7e952c1e-8230-4e98-8aa8-ac4002f2181e.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\91b5386d-29c6-4c37-bbc4-46a9aa7ec2e2.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\91b5386d-29c6-4c37-bbc4-46a9aa7ec2e2.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\99c4b209-850e-440b-bb80-0b6d5f7e169a.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\99c4b209-850e-440b-bb80-0b6d5f7e169a.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\af4e8beb-0cb6-42cd-bb40-525e74a1d247.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\af4e8beb-0cb6-42cd-bb40-525e74a1d247.jpg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\bff9b5d6-fd5e-466e-9223-2acf17aac755.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\bff9b5d6-fd5e-466e-9223-2acf17aac755.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\c76b87cc-4b6b-46f1-9c4b-48fd5d0f755f.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\c76b87cc-4b6b-46f1-9c4b-48fd5d0f755f.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\dbbdf9fc-76ac-439c-882c-ac8a15fc1f99.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\dbbdf9fc-76ac-439c-882c-ac8a15fc1f99.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\eac3895b-cd02-40cc-9684-c9ee88135fd6.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\eac3895b-cd02-40cc-9684-c9ee88135fd6.png"
+    },
+    {
+      "Id": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\fee5fcdc-5d04-42e3-a548-3899b38734a8.png",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\fee5fcdc-5d04-42e3-a548-3899b38734a8.png"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.SmartPlant.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.SmartPlant.props",
+      "PackagePath": "build\\SmartPlant.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.SmartPlant.props",
+      "PackagePath": "buildMultiTargeting\\SmartPlant.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.SmartPlant.props",
+      "PackagePath": "buildTransitive\\SmartPlant.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

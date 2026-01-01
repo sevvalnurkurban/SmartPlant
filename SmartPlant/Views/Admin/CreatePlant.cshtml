@@ -1,0 +1,232 @@
+@model SmartPlant.Models.ViewModels.PlantViewModel
+
+@{
+    ViewData["Title"] = "Add Plant Data";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <!-- Back to Manage Plants Link -->
+    <div class="mb-3">
+        <a asp-action="ManagePlants" class="text-decoration-none text-dark">
+            <span style="font-size: 1.1rem;">&larr; Back to Manage Plants</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-2">Add / Edit Plant Data</h2>
+    <p class="text-center mb-4">Fill in or update the plant details below to keep the SmartPlant database up to date.</p>
+
+    <!-- Form Container -->
+    <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+        <form asp-action="CreatePlant" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            @if (ViewData.ModelState.Count > 0 && !ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @Html.ValidationSummary(false)
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <div class="row">
+                <!-- Left Column - Image Upload -->
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <div id="imagePreviewContainer" style="width: 200px; height: 200px; margin: 0 auto; border: 2px solid #999; background-color: white; display: flex; align-items: center; justify-content: center; position: relative;">
+                            @if (!string.IsNullOrEmpty(Model?.PhotoUrl))
+                            {
+                                <img id="imagePreview" src="@Model.PhotoUrl" alt="Plant" style="width: 100%; height: 100%; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <div id="imagePlaceholder">
+                                    <svg width="100" height="100" style="stroke: #999;">
+                                        <line x1="0" y1="0" x2="100" y2="100" stroke="#999" stroke-width="2"/>
+                                        <line x1="100" y1="0" x2="0" y2="100" stroke="#999" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            }
+                        </div>
+                        <div class="mt-3 d-flex gap-2 justify-content-center">
+                            <label for="photoFile" class="btn" style="background-color: white; color: #333; border: 1px solid #999; padding: 6px 12px; cursor: pointer; font-size: 0.9rem;">Upload Photo</label>
+                            <input asp-for="Photo" type="file" id="photoFile" accept="image/*" class="d-none" />
+                            <button type="button" id="removePhotoBtn" class="btn d-none" style="background-color: #dc3545; color: white; padding: 6px 12px; font-size: 0.9rem;">Remove Photo</button>
+                            <input type="hidden" name="removePhoto" id="removePhotoFlag" value="" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Form Fields -->
+                <div class="col-md-8">
+                    <!-- Plant Name -->
+                    <div class="mb-3 row align-items-center">
+                        <label asp-for="Name" class="col-md-5 col-form-label text-end fw-bold">Plant Name:</label>
+                        <div class="col-md-7">
+                            <input asp-for="Name" class="form-control" style="background-color: white; border: 1px solid #999;" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Category/Type -->
+                    <div class="mb-3 row align-items-center">
+                        <label asp-for="Type" class="col-md-5 col-form-label text-end fw-bold">Category/Type:</label>
+                        <div class="col-md-7">
+                            <select asp-for="Type" class="form-select" style="background-color: white; border: 1px solid #999;">
+                                <option value="">Select Category</option>
+                                <option value="Tropical">Tropical</option>
+                                <option value="Succulent">Succulent</option>
+                                <option value="Cactus">Cactus</option>
+                                <option value="Herb">Herb</option>
+                                <option value="Flowering">Flowering</option>
+                                <option value="Fern">Fern</option>
+                                <option value="Vine">Vine</option>
+                                <option value="Air Plant">Air Plant</option>
+                                <option value="Foliage">Foliage</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Type" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Watering Period -->
+                    <div class="mb-3 row align-items-center">
+                        <label asp-for="WaterPeriod" class="col-md-5 col-form-label text-end fw-bold">Watering Period:</label>
+                        <div class="col-md-7">
+                            <input asp-for="WaterPeriod" class="form-control" placeholder="Every 7-10 days" style="background-color: white; border: 1px solid #999;" />
+                            <span asp-validation-for="WaterPeriod" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Water Amount -->
+                    <div class="mb-3 row align-items-center">
+                        <label asp-for="WaterMlPerWeek" class="col-md-5 col-form-label text-end fw-bold">Water Amount (ml/week):</label>
+                        <div class="col-md-7">
+                            <input asp-for="WaterMlPerWeek" type="number" class="form-control" placeholder="250" style="background-color: white; border: 1px solid #999;" />
+                            <span asp-validation-for="WaterMlPerWeek" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Light Requirement -->
+                    <div class="mb-3 row align-items-center">
+                        <label asp-for="Light" class="col-md-5 col-form-label text-end fw-bold">Light Requirement:</label>
+                        <div class="col-md-7">
+                            <select asp-for="Light" class="form-select" style="background-color: white; border: 1px solid #999;">
+                                <option value="">Select Light Requirement</option>
+                                <option value="Full Sun">Full Sun</option>
+                                <option value="Bright Indirect Light">Bright Indirect Light</option>
+                                <option value="Medium Light">Medium Light</option>
+                                <option value="Low Light">Low Light</option>
+                                <option value="Partial Shade">Partial Shade</option>
+                                <option value="Shade">Shade</option>
+                            </select>
+                            <span asp-validation-for="Light" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Temperature Range -->
+                    <div class="mb-3 row align-items-center">
+                        <label class="col-md-5 col-form-label text-end fw-bold">Temperature Range (°C):</label>
+                        <div class="col-md-7">
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="text" id="tempMin" class="form-control" placeholder="18" style="background-color: white; border: 1px solid #999; max-width: 80px;" />
+                                <span>-</span>
+                                <input type="text" id="tempMax" class="form-control" placeholder="24" style="background-color: white; border: 1px solid #999; max-width: 80px;" />
+                                <input asp-for="Temperature" type="hidden" id="tempCombined" />
+                            </div>
+                            <span asp-validation-for="Temperature" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-4 row align-items-center">
+                        <label asp-for="Description" class="col-md-5 col-form-label text-end fw-bold">Description:</label>
+                        <div class="col-md-7">
+                            <textarea asp-for="Description" class="form-control" rows="2" style="background-color: white; border: 1px solid #999;"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn me-2" style="background-color: #8b9f7f; color: white; padding: 8px 30px;">Save Changes</button>
+                    <a asp-action="ManagePlants" class="btn" style="background-color: #999; color: white; padding: 8px 30px;">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoInput = document.getElementById('photoFile');
+            const removePhotoBtn = document.getElementById('removePhotoBtn');
+            const removePhotoFlag = document.getElementById('removePhotoFlag');
+            const container = document.getElementById('imagePreviewContainer');
+
+            if (photoInput) {
+                photoInput.addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            container.innerHTML = '<img id="imagePreview" src="' + e.target.result + '" alt="Plant" style="width: 100%; height: 100%; object-fit: cover;" />';
+                            removePhotoBtn.classList.remove('d-none');
+                            removePhotoFlag.value = '';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            if (removePhotoBtn) {
+                removePhotoBtn.addEventListener('click', function() {
+                    console.log('Remove photo clicked');
+                    photoInput.value = '';
+                    container.innerHTML = '<div id="imagePlaceholder"><svg width="100" height="100" style="stroke: #999;"><line x1="0" y1="0" x2="100" y2="100" stroke="#999" stroke-width="2"/><line x1="100" y1="0" x2="0" y2="100" stroke="#999" stroke-width="2"/></svg></div>';
+                    removePhotoBtn.classList.add('d-none');
+                    removePhotoFlag.value = 'true';
+                    console.log('removePhotoFlag value:', removePhotoFlag.value);
+                });
+            }
+
+            // Debug: Log form submission
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    console.log('Form submitting with removePhoto:', removePhotoFlag ? removePhotoFlag.value : 'not found');
+                });
+            }
+
+            // Temperature range combination
+            const tempMin = document.getElementById('tempMin');
+            const tempMax = document.getElementById('tempMax');
+            const tempCombined = document.getElementById('tempCombined');
+
+            function updateCombinedTemp() {
+                const min = tempMin.value.trim();
+                const max = tempMax.value.trim();
+                if (min && max) {
+                    tempCombined.value = min + '-' + max;
+                } else {
+                    tempCombined.value = '';
+                }
+            }
+
+            if (tempMin && tempMax) {
+                tempMin.addEventListener('input', updateCombinedTemp);
+                tempMax.addEventListener('input', updateCombinedTemp);
+            }
+        });
+    </script>
+}
