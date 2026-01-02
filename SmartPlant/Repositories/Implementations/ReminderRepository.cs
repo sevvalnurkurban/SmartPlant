@@ -15,7 +15,7 @@ namespace SmartPlant.Repositories.Implementations
         {
             return await _dbSet
                 .Include(r => r.Plant)
-                .Where(r => r.UserId == userId && !r.IsDeleted && r.Plant != null && !r.Plant.IsDeleted)
+                .Where(r => r.UserId == userId && r.IsDeleted != true && r.Plant != null && r.Plant.IsDeleted != true)
                 .OrderByDescending(r => r.ReminderDate)
                 .ToListAsync();
         }
@@ -25,9 +25,9 @@ namespace SmartPlant.Repositories.Implementations
             return await _dbSet
                 .Include(r => r.Plant)
                 .Where(r => r.UserId == userId &&
-                           !r.IsDeleted &&
+                           r.IsDeleted != true &&
                            r.Status == "Pending" &&
-                           r.Plant != null && !r.Plant.IsDeleted)
+                           r.Plant != null && r.Plant.IsDeleted != true)
                 .OrderBy(r => r.ReminderDate)
                 .ToListAsync();
         }
@@ -37,8 +37,8 @@ namespace SmartPlant.Repositories.Implementations
             return await _dbSet
                 .Include(r => r.Plant)
                 .Where(r => r.UserId == userId &&
-                           !r.IsDeleted &&
-                           r.Plant != null && !r.Plant.IsDeleted &&
+                           r.IsDeleted != true &&
+                           r.Plant != null && r.Plant.IsDeleted != true &&
                            (r.Task!.Contains(searchTerm) ||
                             r.Plant!.Name.Contains(searchTerm)))
                 .OrderByDescending(r => r.ReminderDate)

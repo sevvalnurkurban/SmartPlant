@@ -25,6 +25,7 @@ builder.Services.AddScoped<IReminderRepository, ReminderRepository>();
 
 // Register Services
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IPlantService, PlantService>();
 builder.Services.AddScoped<IUserPlantService, UserPlantService>();
 builder.Services.AddScoped<IReminderService, ReminderService>();

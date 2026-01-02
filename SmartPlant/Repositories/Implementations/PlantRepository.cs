@@ -14,7 +14,7 @@ namespace SmartPlant.Repositories.Implementations
         public async Task<IEnumerable<Plant>> GetActivePlantsAsync()
         {
             return await _dbSet
-                .Where(p => !p.IsDeleted)
+                .Where(p => p.IsDeleted != true)
                 .OrderBy(p => p.Name)
                 .ToListAsync();
         }
@@ -22,7 +22,7 @@ namespace SmartPlant.Repositories.Implementations
         public async Task<IEnumerable<Plant>> SearchPlantsAsync(string searchTerm)
         {
             return await _dbSet
-                .Where(p => !p.IsDeleted &&
+                .Where(p => p.IsDeleted != true &&
                            (p.Name.Contains(searchTerm) ||
                             p.Type!.Contains(searchTerm) ||
                             p.Description!.Contains(searchTerm)))
@@ -33,7 +33,7 @@ namespace SmartPlant.Repositories.Implementations
         public async Task<IEnumerable<Plant>> GetPlantsByTypeAsync(string type)
         {
             return await _dbSet
-                .Where(p => !p.IsDeleted && p.Type == type)
+                .Where(p => p.IsDeleted != true && p.Type == type)
                 .OrderBy(p => p.Name)
                 .ToListAsync();
         }

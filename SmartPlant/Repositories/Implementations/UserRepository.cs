@@ -15,38 +15,38 @@ namespace SmartPlant.Repositories.Implementations
         {
             return await _dbSet
                 .Include(u => u.UserPlants)
-                .FirstOrDefaultAsync(u => u.Id == id && !u.IsDeleted);
+                .FirstOrDefaultAsync(u => u.Id == id && u.IsDeleted != true);
         }
 
         public async Task<User?> GetByEmailAsync(string email)
         {
             return await _dbSet
-                .FirstOrDefaultAsync(u => u.Email == email && !u.IsDeleted);
+                .FirstOrDefaultAsync(u => u.Email == email && u.IsDeleted != true);
         }
 
         public async Task<User?> GetByUsernameAsync(string username)
         {
             return await _dbSet
-                .FirstOrDefaultAsync(u => u.Username == username && !u.IsDeleted);
+                .FirstOrDefaultAsync(u => u.Username == username && u.IsDeleted != true);
         }
 
         public async Task<bool> EmailExistsAsync(string email)
         {
             return await _dbSet
-                .AnyAsync(u => u.Email == email && !u.IsDeleted);
+                .AnyAsync(u => u.Email == email && u.IsDeleted != true);
         }
 
         public async Task<bool> UsernameExistsAsync(string username)
         {
             return await _dbSet
-                .AnyAsync(u => u.Username == username && !u.IsDeleted);
+                .AnyAsync(u => u.Username == username && u.IsDeleted != true);
         }
 
         public async Task<IEnumerable<User>> GetActiveUsersAsync()
         {
             return await _dbSet
                 .Include(u => u.UserPlants)
-                .Where(u => !u.IsDeleted)
+                .Where(u => u.IsDeleted != true)
                 .OrderByDescending(u => u.CreatedDate)
                 .ToListAsync();
         }

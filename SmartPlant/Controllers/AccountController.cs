@@ -45,7 +45,7 @@ namespace SmartPlant.Controllers
             }
 
             // Check if email is verified
-            if (!user.IsEmailVerified)
+            if (user.IsEmailVerified != true)
             {
                 ModelState.AddModelError("", "Please verify your email address before logging in. Check your inbox for the verification code.");
                 return View(model);

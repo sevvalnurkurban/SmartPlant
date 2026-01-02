@@ -18,14 +18,14 @@ namespace SmartPlant.Services.Implementations
         {
             return await _context.UserPlants
                 .Include(up => up.Plant)
-                .FirstOrDefaultAsync(up => up.Id == id && !up.IsDeleted);
+                .FirstOrDefaultAsync(up => up.Id == id && up.IsDeleted != true);
         }
 
         public async Task<IEnumerable<UserPlant>> GetUserPlantsAsync(int userId, int page = 1, int pageSize = 10)
         {
             return await _context.UserPlants
                 .Include(up => up.Plant)
-                .Where(up => up.UserId == userId && !up.IsDeleted)
+                .Where(up => up.UserId == userId && up.IsDeleted != true)
                 .OrderByDescending(up => up.CreatedDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -35,7 +35,7 @@ namespace SmartPlant.Services.Implementations
         public async Task<int> GetUserPlantsCountAsync(int userId)
         {
             return await _context.UserPlants
-                .CountAsync(up => up.UserId == userId && !up.IsDeleted);
+                .CountAsync(up => up.UserId == userId && up.IsDeleted != true);
         }
 
         public async Task<UserPlant?> AddPlantToUserAsync(int userId, int plantId, DateTime? lastWatered, DateTime? nextWatering, string? status)

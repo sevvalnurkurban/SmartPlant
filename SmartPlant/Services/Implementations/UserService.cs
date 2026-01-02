@@ -187,7 +187,7 @@ namespace SmartPlant.Services.Implementations
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.EmailVerificationToken == token
                     && u.EmailVerificationTokenExpiry > DateTime.UtcNow
-                    && !u.IsDeleted);
+                    && u.IsDeleted != true);
 
             if (user == null)
                 return false;
@@ -220,7 +220,7 @@ namespace SmartPlant.Services.Implementations
                 .FirstOrDefaultAsync(u => u.Email == email
                     && u.EmailVerificationOtp == otpCode
                     && u.EmailVerificationOtpExpiry > DateTime.UtcNow
-                    && !u.IsDeleted);
+                    && u.IsDeleted != true);
 
             if (user == null)
                 return false;

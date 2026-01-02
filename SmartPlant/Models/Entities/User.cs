@@ -78,7 +78,7 @@ namespace SmartPlant.Models.Entities
         // Navigation properties
         public virtual ICollection<UserPlant>? UserPlants { get; set; }
         public virtual ICollection<Reminder>? Reminders { get; set; }
-        public virtual ICollection<UserFeedback>? Feedbacks { get; set; }
+        public virtual ICollection<UserFeedback>? UserFeedbacks { get; set; }
         public virtual ICollection<PasswordResetToken>? PasswordResetTokens { get; set; }
     }
 }

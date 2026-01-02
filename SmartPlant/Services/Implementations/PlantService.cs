@@ -84,7 +84,7 @@ namespace SmartPlant.Services.Implementations
 
             // Soft delete all UserPlants associated with this plant
             var userPlants = await _context.UserPlants
-                .Where(up => up.PlantId == id && !up.IsDeleted)
+                .Where(up => up.PlantId == id && up.IsDeleted != true)
                 .ToListAsync();
 
             foreach (var userPlant in userPlants)
@@ -94,7 +94,7 @@ namespace SmartPlant.Services.Implementations
 
             // Soft delete all Reminders associated with this plant
             var reminders = await _context.Reminders
-                .Where(r => r.PlantId == id && !r.IsDeleted)
+                .Where(r => r.PlantId == id && r.IsDeleted != true)
                 .ToListAsync();
 
             foreach (var reminder in reminders)

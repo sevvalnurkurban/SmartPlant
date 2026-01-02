@@ -1,8 +1,9 @@
-@model SmartPlant.Models.Entities.User
+@model dynamic
 
 @{
-    ViewData["Title"] = "View User";
+    ViewData["Title"] = ViewBag.IsAdmin == true ? "View Admin" : "View User";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var isAdmin = ViewBag.IsAdmin == true;
 }
 
 <div class="container mt-4">
@@ -14,7 +15,7 @@
     </div>
 
     <!-- Page Title -->
-    <h2 class="text-center mb-4">User Details</h2>
+    <h2 class="text-center mb-4">@(isAdmin ? "Admin Details" : "User Details")</h2>
 
     <!-- User Details Container -->
     <div class="row justify-content-center">
@@ -40,9 +41,16 @@
 
                 <!-- User Information -->
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Full Name:</label>
+                    <label class="form-label fw-bold">Name:</label>
                     <div class="p-2" style="background-color: white; border: 1px solid #999;">
-                        @Model.Name @Model.Surname
+                        @Model.Name
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Surname:</label>
+                    <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                        @Model.Surname
                     </div>
                 </div>
 
@@ -60,26 +68,43 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Bio:</label>
-                    <div class="p-2" style="background-color: white; border: 1px solid #999; min-height: 60px;">
-                        @(string.IsNullOrEmpty(Model.Bio) ? "No bio available" : Model.Bio)
+                @if (!isAdmin)
+                {
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Bio:</label>
+                        <div class="p-2" style="background-color: white; border: 1px solid #999; min-height: 60px;">
+                            @(string.IsNullOrEmpty(Model.Bio) ? "No bio available" : Model.Bio)
+                        </div>
                     </div>
-                </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Registered Plants:</label>
+                        <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                            @{
+                                var userPlants = Model.UserPlants as IEnumerable<SmartPlant.Models.Entities.UserPlant>;
+                                var plantCount = userPlants?.Count(up => up.IsDeleted != true) ?? 0;
+                            }
+                            @plantCount
+                        </div>
+                    </div>
+                }
 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Registered Plants:</label>
-                    <div class="p-2" style="background-color: white; border: 1px solid #999;">
-                        @(Model.UserPlants?.Count(up => !up.IsDeleted) ?? 0)
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Member Since:</label>
+                    <label class="form-label fw-bold">@(isAdmin ? "Admin" : "Member") Since:</label>
                     <div class="p-2" style="background-color: white; border: 1px solid #999;">
                         @Model.CreatedDate.ToString("MMMM dd, yyyy")
                     </div>
                 </div>
+
+                @if (isAdmin)
+                {
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Role:</label>
+                        <div class="p-2" style="background-color: white; border: 1px solid #999;">
+                            <span class="badge" style="background-color: #dc3545; color: white;">Admin</span>
+                        </div>
+                    </div>
+                }
 
                 <!-- Back Button -->
                 <div class="text-center mt-4">

@@ -67,7 +67,7 @@ namespace SmartPlant.Data.Configurations
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasMany(u => u.Feedbacks)
+            builder.HasMany(u => u.UserFeedbacks)
                 .WithOne(f => f.User)
                 .HasForeignKey(f => f.UserId)
                 .OnDelete(DeleteBehavior.NoAction);

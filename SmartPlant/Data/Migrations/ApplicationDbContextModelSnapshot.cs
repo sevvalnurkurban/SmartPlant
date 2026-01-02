@@ -22,7 +22,7 @@ namespace SmartPlant.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.Admin", b =>
+            modelBuilder.Entity("SmartPlant.Admin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasColumnName("email");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
@@ -62,9 +62,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnName("password");
 
                     b.Property<string>("PhotoUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)")
-                        .HasColumnName("photo_url");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -89,40 +87,32 @@ namespace SmartPlant.Data.Migrations
                     b.ToTable("admins", (string)null);
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.PasswordResetToken", b =>
+            modelBuilder.Entity("SmartPlant.PasswordResetToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AdminId")
-                        .HasColumnType("int")
-                        .HasColumnName("admin_id");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_date");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("expires_at");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsUsed")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_used");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Token")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("token");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("user_id");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -133,10 +123,10 @@ namespace SmartPlant.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("password_reset_tokens");
+                    b.ToTable("PasswordResetTokens");
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.Plant", b =>
+            modelBuilder.Entity("SmartPlant.Plant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -155,7 +145,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
@@ -188,8 +178,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnName("type");
 
                     b.Property<int?>("WaterMlPerWeek")
-                        .HasColumnType("int")
-                        .HasColumnName("water_ml_per_week");
+                        .HasColumnType("int");
 
                     b.Property<string>("WaterPeriod")
                         .HasMaxLength(100)
@@ -201,7 +190,7 @@ namespace SmartPlant.Data.Migrations
                     b.ToTable("plants", (string)null);
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.Reminder", b =>
+            modelBuilder.Entity("SmartPlant.Reminder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -216,7 +205,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnName("created_date")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
@@ -258,7 +247,7 @@ namespace SmartPlant.Data.Migrations
                     b.ToTable("reminders", (string)null);
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.User", b =>
+            modelBuilder.Entity("SmartPlant.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -284,32 +273,25 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnName("email");
 
                     b.Property<string>("EmailVerificationOtp")
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)")
-                        .HasColumnName("email_verification_otp");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EmailVerificationOtpExpiry")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("email_verification_otp_expiry");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailVerificationToken")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("email_verification_token");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EmailVerificationTokenExpiry")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("email_verification_token_expiry");
+                        .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
                         .HasColumnName("is_deleted");
 
-                    b.Property<bool>("IsEmailVerified")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_email_verified");
+                    b.Property<bool?>("IsEmailVerified")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -324,9 +306,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnName("password");
 
                     b.Property<string>("PasswordHash")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("password_hash");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoUrl")
                         .HasMaxLength(500)
@@ -335,9 +315,7 @@ namespace SmartPlant.Data.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("role");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -362,7 +340,7 @@ namespace SmartPlant.Data.Migrations
                     b.ToTable("users", (string)null);
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.UserFeedback", b =>
+            modelBuilder.Entity("SmartPlant.UserFeedback", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -382,7 +360,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("feedback");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
@@ -399,7 +377,7 @@ namespace SmartPlant.Data.Migrations
                     b.ToTable("user_feedback", (string)null);
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.UserPlant", b =>
+            modelBuilder.Entity("SmartPlant.UserPlant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -414,7 +392,7 @@ namespace SmartPlant.Data.Migrations
                         .HasColumnName("created_date")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
@@ -450,14 +428,14 @@ namespace SmartPlant.Data.Migrations
                     b.ToTable("user_plants", (string)null);
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.PasswordResetToken", b =>
+            modelBuilder.Entity("SmartPlant.PasswordResetToken", b =>
                 {
-                    b.HasOne("SmartPlant.Models.Entities.Admin", "Admin")
+                    b.HasOne("SmartPlant.Admin", "Admin")
                         .WithMany("PasswordResetTokens")
                         .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SmartPlant.Models.Entities.User", "User")
+                    b.HasOne("SmartPlant.User", "User")
                         .WithMany("PasswordResetTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -467,15 +445,15 @@ namespace SmartPlant.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.Reminder", b =>
+            modelBuilder.Entity("SmartPlant.Reminder", b =>
                 {
-                    b.HasOne("SmartPlant.Models.Entities.Plant", "Plant")
+                    b.HasOne("SmartPlant.Plant", "Plant")
                         .WithMany("Reminders")
                         .HasForeignKey("PlantId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SmartPlant.Models.Entities.User", "User")
+                    b.HasOne("SmartPlant.User", "User")
                         .WithMany("Reminders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -486,10 +464,10 @@ namespace SmartPlant.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.UserFeedback", b =>
+            modelBuilder.Entity("SmartPlant.UserFeedback", b =>
                 {
-                    b.HasOne("SmartPlant.Models.Entities.User", "User")
-                        .WithMany("Feedbacks")
+                    b.HasOne("SmartPlant.User", "User")
+                        .WithMany("UserFeedbacks")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -497,15 +475,15 @@ namespace SmartPlant.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.UserPlant", b =>
+            modelBuilder.Entity("SmartPlant.UserPlant", b =>
                 {
-                    b.HasOne("SmartPlant.Models.Entities.Plant", "Plant")
+                    b.HasOne("SmartPlant.Plant", "Plant")
                         .WithMany("UserPlants")
                         .HasForeignKey("PlantId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SmartPlant.Models.Entities.User", "User")
+                    b.HasOne("SmartPlant.User", "User")
                         .WithMany("UserPlants")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -516,25 +494,25 @@ namespace SmartPlant.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.Admin", b =>
+            modelBuilder.Entity("SmartPlant.Admin", b =>
                 {
                     b.Navigation("PasswordResetTokens");
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.Plant", b =>
+            modelBuilder.Entity("SmartPlant.Plant", b =>
                 {
                     b.Navigation("Reminders");
 
                     b.Navigation("UserPlants");
                 });
 
-            modelBuilder.Entity("SmartPlant.Models.Entities.User", b =>
+            modelBuilder.Entity("SmartPlant.User", b =>
                 {
-                    b.Navigation("Feedbacks");
-
                     b.Navigation("PasswordResetTokens");
 
                     b.Navigation("Reminders");
+
+                    b.Navigation("UserFeedbacks");
 
                     b.Navigation("UserPlants");
                 });

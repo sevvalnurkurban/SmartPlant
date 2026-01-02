@@ -33,7 +33,7 @@ namespace SmartPlant.Services.Implementations
         {
             return await _context.UserFeedbacks
                 .Include(f => f.User)
-                .Where(f => !f.IsDeleted)
+                .Where(f => f.IsDeleted != true)
                 .OrderByDescending(f => f.CreatedAt)
                 .ToListAsync();
         }

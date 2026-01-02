@@ -18,13 +18,15 @@ namespace SmartPlant.Controllers
         private readonly IPlantService _plantService;
         private readonly IUserService _userService;
         private readonly IFeedbackService _feedbackService;
+        private readonly IAdminService _adminService;
 
-        public AdminController(ApplicationDbContext context, IPlantService plantService, IUserService userService, IFeedbackService feedbackService)
+        public AdminController(ApplicationDbContext context, IPlantService plantService, IUserService userService, IFeedbackService feedbackService, IAdminService adminService)
         {
             _context = context;
             _plantService = plantService;
             _userService = userService;
             _feedbackService = feedbackService;
+            _adminService = adminService;
         }
 
         [HttpGet]
@@ -262,15 +264,41 @@ namespace SmartPlant.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public async Task<IActionResult> ViewUser(int id)
+        public async Task<IActionResult> ViewUser(int id, string? role = null)
         {
-            var user = await _userService.GetByIdAsync(id);
-            if (user == null)
+            // If role is specified as Admin, or try Admin first if not found in Users
+            if (role == "Admin")
             {
+                var admin = await _adminService.GetByIdAsync(id);
+                if (admin == null)
+                {
+                    TempData["Error"] = "Admin not found.";
+                    return RedirectToAction("ManageUsers");
+                }
+                ViewBag.IsAdmin = true;
+                return View("ViewUser", admin);
+            }
+            else
+            {
+                // Try User first
+                var user = await _userService.GetByIdAsync(id);
+                if (user != null)
+                {
+                    ViewBag.IsAdmin = false;
+                    return View(user);
+                }
+
+                // If not found in Users, try Admin
+                var admin = await _adminService.GetByIdAsync(id);
+                if (admin != null)
+                {
+                    ViewBag.IsAdmin = true;
+                    return View("ViewUser", admin);
+                }
+
                 TempData["Error"] = "User not found.";
                 return RedirectToAction("ManageUsers");
             }
-            return View(user);
         }
 
         [Authorize(Roles = "Admin")]
@@ -296,7 +324,7 @@ namespace SmartPlant.Controllers
         public async Task<IActionResult> Profile()
         {
             var adminId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Id == adminId && !a.IsDeleted);
+            var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Id == adminId && a.IsDeleted != true);
 
             if (admin == null)
                 return RedirectToAction("Login");
@@ -406,6 +434,53 @@ namespace SmartPlant.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
+        public IActionResult CreateAdmin()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAdmin(CreateAdminViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            // Check if email already exists
+            if (await _adminService.EmailExistsAsync(model.Email))
+            {
+                ModelState.AddModelError("Email", "Email already exists");
+                return View(model);
+            }
+
+            // Check if username already exists
+            if (await _adminService.UsernameExistsAsync(model.Username))
+            {
+                ModelState.AddModelError("Username", "Username already exists");
+                return View(model);
+            }
+
+            var admin = await _adminService.CreateAdminAsync(
+                model.Name,
+                model.Surname,
+                model.Email,
+                model.Username,
+                model.Password
+            );
+
+            if (admin == null)
+            {
+                ModelState.AddModelError("", "Failed to create admin. Please try again.");
+                return View(model);
+            }
+
+            TempData["Success"] = "Admin created successfully!";
+            return RedirectToAction("ManageUsers");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
         public IActionResult ChangePassword()
         {
             return View();
@@ -420,7 +495,7 @@ namespace SmartPlant.Controllers
                 return View(model);
 
             var adminId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Id == adminId && !a.IsDeleted);
+            var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Id == adminId && a.IsDeleted != true);
 
             if (admin == null)
             {

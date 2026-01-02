@@ -1,0 +1,105 @@
+@model SmartPlant.Models.ViewModels.CreateAdminViewModel
+
+@{
+    ViewData["Title"] = "Create New Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <!-- Back to Dashboard Link -->
+    <div class="mb-3">
+        <a asp-action="Dashboard" class="text-decoration-none text-dark">
+            <span style="font-size: 1.1rem;">&larr; Back to Dashboard</span>
+        </a>
+    </div>
+
+    <!-- Page Title -->
+    <h2 class="text-center mb-2">Create New Admin</h2>
+    <p class="text-center mb-4">Fill in the details below to create a new admin account.</p>
+
+    <!-- Form Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="p-4" style="background-color: #d4e4d4; border: 1px solid #999;">
+                <form asp-action="CreateAdmin" method="post">
+                    @Html.AntiForgeryToken()
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["Success"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul class="mb-0">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li>@error.ErrorMessage</li>
+                                }
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-bold">Name:</label>
+                        <input asp-for="Name" class="form-control" style="background-color: white; border: 1px solid #999;" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Surname -->
+                    <div class="mb-3">
+                        <label asp-for="Surname" class="form-label fw-bold">Surname:</label>
+                        <input asp-for="Surname" class="form-control" style="background-color: white; border: 1px solid #999;" />
+                        <span asp-validation-for="Surname" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Email:</label>
+                        <input asp-for="Email" type="email" class="form-control" style="background-color: white; border: 1px solid #999;" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label fw-bold">Username:</label>
+                        <input asp-for="Username" class="form-control" style="background-color: white; border: 1px solid #999;" />
+                        <span asp-validation-for="Username" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label fw-bold">Password:</label>
+                        <input asp-for="Password" type="password" class="form-control" style="background-color: white; border: 1px solid #999;" />
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mb-4">
+                        <label asp-for="ConfirmPassword" class="form-label fw-bold">Confirm Password:</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" style="background-color: white; border: 1px solid #999;" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn" style="background-color: #8b9f7f; color: white; border-radius: 5px; padding: 8px 40px;">Create Admin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra spacing for footer -->
+    <div style="height: 150px;"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
