@@ -80,6 +80,5 @@ namespace SmartPlant.Models.Entities
         public virtual ICollection<Reminder>? Reminders { get; set; }
         public virtual ICollection<UserFeedback>? Feedbacks { get; set; }
         public virtual ICollection<PasswordResetToken>? PasswordResetTokens { get; set; }
-        public virtual UserPreference? Preference { get; set; }
     }
 }

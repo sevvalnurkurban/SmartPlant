@@ -18,7 +18,6 @@ namespace SmartPlant.Data
         public DbSet<Reminder> Reminders { get; set; }
         public DbSet<UserFeedback> UserFeedbacks { get; set; }
         public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
-        public DbSet<UserPreference> UserPreferences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -63,10 +62,6 @@ namespace SmartPlant.Data
 
             modelBuilder.Entity<PasswordResetToken>()
                 .HasIndex(prt => prt.Token)
-                .IsUnique();
-
-            modelBuilder.Entity<UserPreference>()
-                .HasIndex(up => up.UserId)
                 .IsUnique();
         }
     }

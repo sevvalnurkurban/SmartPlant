@@ -234,53 +234,5 @@ namespace SmartPlant.Services.Implementations
 
             return true;
         }
-
-        public async Task<UserPreference?> GetUserPreferencesAsync(int userId)
-        {
-            var user = await _context.Users
-                .Include(u => u.Preference)
-                .FirstOrDefaultAsync(u => u.Id == userId);
-
-            return user?.Preference;
-        }
-
-        public async Task<bool> SaveUserPreferencesAsync(int userId, string reminderTime, string timeZone, string reminderFrequency, bool emailNotifications, bool inAppNotifications)
-        {
-            var user = await _context.Users
-                .Include(u => u.Preference)
-                .FirstOrDefaultAsync(u => u.Id == userId);
-
-            if (user == null)
-                return false;
-
-            if (user.Preference == null)
-            {
-                // Create new preference
-                user.Preference = new UserPreference
-                {
-                    UserId = userId,
-                    ReminderTime = reminderTime,
-                    TimeZone = timeZone,
-                    ReminderFrequency = reminderFrequency,
-                    EmailNotificationsEnabled = emailNotifications,
-                    InAppNotificationsEnabled = inAppNotifications,
-                    CreatedDate = DateTime.Now
-                };
-                _context.UserPreferences.Add(user.Preference);
-            }
-            else
-            {
-                // Update existing preference
-                user.Preference.ReminderTime = reminderTime;
-                user.Preference.TimeZone = timeZone;
-                user.Preference.ReminderFrequency = reminderFrequency;
-                user.Preference.EmailNotificationsEnabled = emailNotifications;
-                user.Preference.InAppNotificationsEnabled = inAppNotifications;
-                user.Preference.UpdatedDate = DateTime.Now;
-            }
-
-            await _context.SaveChangesAsync();
-            return true;
-        }
     }
 }

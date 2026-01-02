@@ -18,7 +18,5 @@ namespace SmartPlant.Services.Interfaces
         Task<bool> VerifyEmailAsync(string token);
         Task SetEmailVerificationOtpAsync(int userId, string otpCode);
         Task<bool> VerifyEmailOtpAsync(string email, string otpCode);
-        Task<UserPreference?> GetUserPreferencesAsync(int userId);
-        Task<bool> SaveUserPreferencesAsync(int userId, string reminderTime, string timeZone, string reminderFrequency, bool emailNotifications, bool inAppNotifications);
     }
 }

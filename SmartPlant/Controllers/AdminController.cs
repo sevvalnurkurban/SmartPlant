@@ -211,8 +211,53 @@ namespace SmartPlant.Controllers
         [HttpGet]
         public async Task<IActionResult> ManageUsers()
         {
+            // Get all users
             var users = await _userService.GetAllUsersAsync();
-            return View(users);
+
+            // Get all admins
+            var admins = await _context.Admins
+                .Where(a => !a.IsDeleted)
+                .ToListAsync();
+
+            // Combine both into UserAdminViewModel list
+            var userAdminList = new List<UserAdminViewModel>();
+
+            // Add users to list
+            foreach (var user in users)
+            {
+                userAdminList.Add(new UserAdminViewModel
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    Email = user.Email,
+                    Role = "User",
+                    CreatedDate = user.CreatedDate,
+                    IsDeleted = user.IsDeleted,
+                    PlantCount = user.UserPlants?.Count(up => !up.IsDeleted) ?? 0  // ? BU SATIRI EKLE
+                });
+            }
+
+            // Add admins to list
+            foreach (var admin in admins)
+            {
+                userAdminList.Add(new UserAdminViewModel
+                {
+                    Id = admin.Id,
+                    Name = admin.Name,
+                    Surname = admin.Surname,
+                    Email = admin.Email,
+                    Role = "Admin",
+                    CreatedDate = admin.CreatedDate,
+                    IsDeleted = admin.IsDeleted,
+                    PlantCount = 0  // ? BU SATIRI EKLE (Adminlerin bitkisi yok)
+                });
+            }
+
+            // Sort by created date (newest first)
+            userAdminList = userAdminList.OrderByDescending(x => x.CreatedDate).ToList();
+
+            return View(userAdminList);
         }
 
         [Authorize(Roles = "Admin")]

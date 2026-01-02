@@ -331,56 +331,6 @@ namespace SmartPlant.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> Preferences()
-        {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            var preferences = await _userService.GetUserPreferencesAsync(userId);
-
-            var model = new PreferencesViewModel();
-
-            if (preferences != null)
-            {
-                model.ReminderTime = preferences.ReminderTime;
-                model.TimeZone = preferences.TimeZone;
-                model.ReminderFrequency = preferences.ReminderFrequency;
-                model.EmailNotificationsEnabled = preferences.EmailNotificationsEnabled;
-                model.InAppNotificationsEnabled = preferences.InAppNotificationsEnabled;
-            }
-
-            return View(model);
-        }
-
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Preferences(PreferencesViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-
-            var result = await _userService.SaveUserPreferencesAsync(
-                userId,
-                model.ReminderTime,
-                model.TimeZone,
-                model.ReminderFrequency,
-                model.EmailNotificationsEnabled,
-                model.InAppNotificationsEnabled
-            );
-
-            if (!result)
-            {
-                ModelState.AddModelError("", "Failed to save preferences");
-                return View(model);
-            }
-
-            TempData["Success"] = "Preferences updated successfully!";
-            return RedirectToAction("Preferences");
-        }
-
-        [Authorize]
-        [HttpGet]
         public IActionResult ChangePassword()
         {
             return View();

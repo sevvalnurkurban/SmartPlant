@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zhnNV0Pspq60Jy6wbePPnSD+PPW8FkkME4x+5S2GBhI=",
+  "Hash": "4dKwoY9NojpYJp+KFLWUfAHZj5UjbmmR/r6CEYQd1Lg=",
   "Source": "SmartPlant",
   "BasePath": "_content/SmartPlant",
   "Mode": "Default",
@@ -2446,6 +2446,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\profiles\\bff9b5d6-fd5e-466e-9223-2acf17aac755.png"
+    },
+    {
+      "Identity": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\c6d212cd-efb2-4dff-900a-2e70b6335a62.png",
+      "SourceId": "SmartPlant",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\",
+      "BasePath": "_content/SmartPlant",
+      "RelativePath": "uploads/profiles/c6d212cd-efb2-4dff-900a-2e70b6335a62.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\profiles\\c6d212cd-efb2-4dff-900a-2e70b6335a62.png"
     },
     {
       "Identity": "C:\\Users\\sevva\\source\\repos\\SmartPlant\\SmartPlant\\wwwroot\\uploads\\profiles\\c76b87cc-4b6b-46f1-9c4b-48fd5d0f755f.png",
